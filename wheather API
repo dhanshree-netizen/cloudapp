@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather API Integration</title>
+</head>
+<body>
+    <h2>Chennai Weather Information</h2>
+
+    <button onclick="getWeather()">Get Weather</button>
+
+    <p id="result">Click the button to get weather data.</p>
+
+    <script>
+        async function getWeather() {
+            const url =
+                "https://api.open-meteo.com/v1/forecast?latitude=13.0827&longitude=80.2707&current=temperature_2m,relative_humidity_2m,wind_speed_10m";
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+
+                const data = await response.json();
+
+                document.getElementById("result").innerHTML =
+                    "Temperature: " + data.current.temperature_2m + " °C<br>" +
+                    "Humidity: " + data.current.relative_humidity_2m + " %<br>" +
+                    "Wind Speed: " + data.current.wind_speed_10m + " km/h";
+            }
+            catch (error) {
+                document.getElementById("result").textContent =
+                    "Unable to retrieve weather data.";
+            }
+        }
+    </script>
+</body>
+</html>
