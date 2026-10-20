@@ -1,0 +1,16 @@
+
+wsl --install
+wsl --status
+wsl --list --online
+wsl --install -d Ubuntu-22.04 --web-download
+wsl -d Ubuntu-22.04
+
+------------ubuntu---------------------
+
+cd ~
+sudo apt update
+sudo apt install build-essential openmpi-bin libopenmpi-dev
+gcc --version
+mpicc --version
+mpirun --version
+lsb_release -a
